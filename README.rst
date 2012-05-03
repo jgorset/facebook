@@ -4,7 +4,7 @@ Facebook
 About
 -----
 
-Facebook API client for Python.
+Facebook makes it even easier to interact with Facebook's Graph API.
 
 Installation
 ------------

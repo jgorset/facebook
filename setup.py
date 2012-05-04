@@ -2,9 +2,11 @@
 
 from distutils.core import setup
 
+execfile('facebook/version.py')
+
 setup(
     name = 'Facebook',
-    version = '0.0',
+    version = __version__,
     description = 'Facebook makes it even easier to interact with Facebook\'s Graph API',
     long_description = open('README.rst').read() + '\n\n' + open('HISTORY.rst').read(),
     author = 'Johannes Gorset',

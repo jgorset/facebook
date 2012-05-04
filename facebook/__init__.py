@@ -1,3 +1,3 @@
 """TODO: Document your package."""
 
-__version__ = 'TODO: Enter a version'
+from .version import __version__

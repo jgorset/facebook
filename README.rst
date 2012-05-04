@@ -16,12 +16,12 @@ Usage
     with facebook.session(oauth_token) as session:
         user = session.User('johannes.gorset')
 
-        user.id           #=> 586052336
-        user.first_name   #=> 'Johannes'
-        user.last_name    #=> 'Gorset'
-        user.name         #=> 'Johannes Gorset'
-        user.link         #=> 'http://facebook.com/johannesgorset'
-        user.permissions  #=> ['user_location', 'user_relationships']
+        user.facebook_id    #=> 586052336
+        user.first_name     #=> 'Johannes'
+        user.last_name      #=> 'Gorset'
+        user.name           #=> 'Johannes Gorset'
+        user.link           #=> 'http://facebook.com/johannesgorset'
+        user.permissions    #=> ['user_location', 'user_relationships']
 
 Installation
 ------------

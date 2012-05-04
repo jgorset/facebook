@@ -13,15 +13,21 @@ Usage
 
     import facebook 
 
+    # Query Facebook anonymously
+    user = facebook.User('johannes.gorset')
+
+    user.facebook_id    # => 586052336
+    user.first_name     # => 'Johannes'
+    user.last_name      # => 'Gorset'
+    user.name           # => 'Johannes Gorset'
+    user.link           # => 'http://facebook.com/johannesgorset'
+
+    # Query Facebook on behalf of a user
     with facebook.session(oauth_token) as session:
         user = session.User('johannes.gorset')
 
-        user.facebook_id    # => 586052336
-        user.first_name     # => 'Johannes'
-        user.last_name      # => 'Gorset'
-        user.name           # => 'Johannes Gorset'
-        user.link           # => 'http://facebook.com/johannesgorset'
         user.permissions    # => ['user_location', 'user_relationships']
+        user.friends        # => [<Facebook User>, <Facebook User>, <Facebook User>, ...]
 
 Disclaimer
 ----------

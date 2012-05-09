@@ -22,10 +22,6 @@ def test_get(mock):
 
     user = User('johannes.gorset')
 
-    user.load()
-
-    mock.assert_called_with('johannes.gorset')
-
     assert_equal(user.username, 'johannesgorset')
     assert_equal(user.first_name, 'Johannes')
     assert_equal(user.last_name, 'Gorset')
@@ -34,6 +30,8 @@ def test_get(mock):
     assert_equal(user.gender, 'male')
     assert_equal(user.link, 'http://facebook.com/johannesgorset')
     assert_equal(user.facebook_id, 586052336)
+
+    mock.assert_called_with('johannes.gorset')
 
 @patch.object(GraphAPI, 'get')
 def test_permissions(mock):

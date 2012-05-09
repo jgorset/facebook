@@ -1,11 +1,12 @@
 """Tests for ``facebook.user``."""
 
-from nose.tools import *
 from mock import patch, Mock as mock
 from facepy import GraphAPI
 
 import facebook
-from facebook import User
+from facebook import Entity, User, Page
+
+from .asserts import *
 
 @patch.object(GraphAPI, 'get')
 def test_get(mock):
@@ -17,19 +18,30 @@ def test_get(mock):
         'locale': 'en_GB',
         'gender': 'male',
         'link': 'http://facebook.com/johannesgorset',
-        'id': '586052336'
+        'id': '586052336',
+        'languages': [
+            {
+                'id': '107381149291932',
+                'name': 'Norwegian'
+            },
+            {
+                'id': '106059522759137',
+                'name': 'English'
+            }
+        ]
     }
 
     user = User('johannes.gorset')
 
-    assert_equal(user.username, 'johannesgorset')
-    assert_equal(user.first_name, 'Johannes')
-    assert_equal(user.last_name, 'Gorset')
-    assert_equal(user.name, 'Johannes Gorset')
-    assert_equal(user.locale, 'en_GB')
-    assert_equal(user.gender, 'male')
-    assert_equal(user.link, 'http://facebook.com/johannesgorset')
-    assert_equal(user.facebook_id, 586052336)
+    assert_equal('johannesgorset', user.username)
+    assert_equal('Johannes', user.first_name)
+    assert_equal('Gorset', user.last_name)
+    assert_equal('Johannes Gorset', user.name)
+    assert_equal('en_GB', user.locale)
+    assert_equal('male', user.gender)
+    assert_equal('http://facebook.com/johannesgorset', user.link)
+    assert_equal(586052336, user.facebook_id)
+    assert_instance_of(Page, user.languages[0])
 
     mock.assert_called_with('johannes.gorset')
 

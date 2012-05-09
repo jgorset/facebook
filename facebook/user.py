@@ -1,6 +1,7 @@
 from entity import Entity
 
-from descriptors import Integer, String
+from .descriptors import Integer, String, List
+from .page import Page
 
 class User(Entity):
     """User instances represent Facebook users."""
@@ -13,6 +14,7 @@ class User(Entity):
     locale      = String('locale')
     gender      = String('gender')
     link        = String('link')
+    languages   = List('languages', Page)
 
     @property
     def permissions(self):

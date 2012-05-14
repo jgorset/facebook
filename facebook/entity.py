@@ -19,9 +19,13 @@ class Entity(object):
         self.oauth_token = oauth_token
         self.id = id
 
-    def load(self):
-        """Query the Graph API for this resource."""
-        return self.graph.get('%s' % self.id)
+    @property
+    def cache(self):
+        """Query or return the Graph API representation of this resource."""
+        if not self._cache:
+            self._cache = self.graph.get('%s' % self.id)
+
+        return self._cache
 
     @property
     def graph(self):

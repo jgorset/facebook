@@ -11,10 +11,7 @@ class Descriptor(object):
         self.attribute = attribute
 
     def __get__(self, instance, owner):
-        if not instance._cache:
-            instance._cache = instance.load()
-
-        return instance._cache[self.attribute]
+        return instance.cache[self.attribute]
 
 class String(Descriptor):
 

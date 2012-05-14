@@ -12,7 +12,7 @@ class Descriptor(object):
 
     def __get__(self, instance, owner):
         if not instance._cache:
-            instance._cache = instance.graph.get('%s' % instance.id)
+            instance._cache = instance.load()
 
         return instance._cache[self.attribute]
 

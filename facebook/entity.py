@@ -19,6 +19,10 @@ class Entity(object):
         self.oauth_token = oauth_token
         self.id = id
 
+    def load(self):
+        """Query the Graph API for this resource."""
+        return self.graph.get('%s' % self.id)
+
     @property
     def graph(self):
         return GraphAPI(self.oauth_token)

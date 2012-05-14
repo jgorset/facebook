@@ -7,7 +7,7 @@ from mock import patch, Mock as mock
 from facepy import GraphAPI
 
 import facebook
-from facebook import Entity, User, Page
+from facebook import Entity, User, Page, PermissionDenied
 
 from .asserts import *
 
@@ -84,7 +84,14 @@ def test_get(mock):
     assert_equal(datetime(1988, 9, 15, 0, 0), user.birthday)
     assert_equal('Norwegian', user.languages[0].name)
     assert_equal('Vinstra vidaregåande skule', user.education[0].school.name)
-    assert_equal('jgorset@gmail.com', user.email)
+
+    # Verify that a valid attribute that is missing raises a PermissionDenied errorA
+    try:
+        assert_equal('jgorset@gmail.com', user.email)
+    except PermissionDenied:
+        pass
+    else:
+        assert false, "Accessing 'user.email' should raise PermissionDenied, but didn't"
 
 @patch.object(GraphAPI, 'get')
 def test_permissions(mock):

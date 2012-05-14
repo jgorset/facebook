@@ -1,5 +1,7 @@
 from datetime import datetime
 
+from .exceptions import PermissionDenied
+
 class Descriptor(object):
 
     def __init__(self, attribute):
@@ -11,7 +13,10 @@ class Descriptor(object):
         self.attribute = attribute
 
     def __get__(self, instance, owner):
-        return instance.cache[self.attribute]
+        try:
+            return instance.cache[self.attribute]
+        except:
+            raise PermissionDenied('You do not have permission to load %s for this entity' % self.attribute)
 
 class String(Descriptor):
 

@@ -21,6 +21,7 @@ class User(entity.Entity):
     is_verified = Boolean('verified')
     bio         = String('bio')
     birthday    = Date('birthday', '%m/%d/%Y')
+    email       = String('email')
 
     @property
     def education(self):

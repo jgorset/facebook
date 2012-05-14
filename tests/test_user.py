@@ -84,6 +84,7 @@ def test_get(mock):
     assert_equal(datetime(1988, 9, 15, 0, 0), user.birthday)
     assert_equal('Norwegian', user.languages[0].name)
     assert_equal('Vinstra vidaregåande skule', user.education[0].school.name)
+    assert_equal('jgorset@gmail.com', user.email)
 
 @patch.object(GraphAPI, 'get')
 def test_permissions(mock):

@@ -2,17 +2,10 @@ import entity
 
 from .descriptors import Integer, String, List, Date, Boolean, Entity
 from .page import Page
+from .structure import Structure
 
 class User(entity.Entity):
     """User instances represent Facebook users."""
-
-    class Education(entity.Entity):
-        """Education instances represent a user's education."""
-
-        school        = Page('school')
-        year          = Page('year')
-        concentration = List('concentration', Page)
-        type          = String('type')
 
     facebook_id = Integer('id')
     username    = String('username')
@@ -28,7 +21,31 @@ class User(entity.Entity):
     is_verified = Boolean('verified')
     bio         = String('bio')
     birthday    = Date('birthday', '%m/%d/%Y')
-    education   = List('education', Education)
+
+    @property
+    def education(self):
+        educations = []
+
+        for education in self.cache['education']:
+            school        = Page(**education.get('school'))
+            year          = Page(**education.get('year'))
+            type          = education.get('type')
+            
+            if 'concentration' in education:
+                concentration = Page(**education.get('concentration'))
+            else:
+                concentration = False
+
+            education = Structure(
+                school = school,
+                year = year,
+                concentration = concentration,
+                type = type
+            )
+
+            educations.append(education)
+
+        return educations
 
     @property
     def permissions(self):

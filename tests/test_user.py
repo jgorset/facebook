@@ -82,26 +82,7 @@ def test_get(mock):
     assert_equal(True, user.is_verified)
     assert_equal('<bio>', user.bio)
     assert_equal(datetime(1988, 9, 15, 0, 0), user.birthday)
-
-    assert_instance_of(Page, user.languages[0])
-
-    mock.return_value = {
-        'id': '111989298827775',
-        'name': 'Vinstra vidaregåande skule',
-        'picture': '<url>',
-        'link': '<url>',
-        'likes': 337,
-        'category': 'School',
-        'is_published': True,
-        'is_community_page': True,
-        'location': {
-            'city': 'Vinstra',
-            'country': 'Norway'
-        },
-        'talking_about_count': 2
-    }
-
-    assert_instance_of(User.Education, user.education[0])
+    assert_equal('Norwegian', user.languages[0].name)
     assert_equal('Vinstra vidaregåande skule', user.education[0].school.name)
 
 @patch.object(GraphAPI, 'get')

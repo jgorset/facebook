@@ -9,7 +9,7 @@ class Entity(object):
     _cache = None
     """Graph API cache for this object."""
 
-    def __init__(self, id, oauth_token=None):
+    def __init__(self, id, oauth_token=None, **attributes):
         """
         Get the entity with the given id.
 
@@ -18,6 +18,8 @@ class Entity(object):
         """
         self.oauth_token = oauth_token
         self.id = id
+
+        self.__dict__.update(attributes)
 
     @property
     def cache(self):

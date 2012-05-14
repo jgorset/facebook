@@ -59,10 +59,7 @@ class List(Descriptor):
         items = []
 
         for item in super(List, self).__get__(instance, owner):
-            instance = self.cls(
-                id = item.get('id', None),
-                oauth_token = instance.oauth_token
-            )
+            instance = self.cls(oauth_token=instance.oauth_token, **item)
 
             items.append(instance)
 

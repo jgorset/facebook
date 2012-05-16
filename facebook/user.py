@@ -28,9 +28,13 @@ class User(entity.Entity):
         """
         Return a list of structures describing the user's education history.
 
-        Each structure has attributes ``school``, ``year`` and optionally ``concentration``,
-        which reference ``Page`` instances. There may also be an attribute ``type`` which is simply
-        a string that describes the education level.
+        Each structure has attributes ``school``, ``year``, ``concentration`` and ``type``.
+
+        ``school``, ``year`` reference ``Page`` instances, while ``concentration`` is a list of ``Page``
+        instances. ``type`` is just a string that describes the education level.
+
+        .. note:: ``concentration`` may be ``False`` if the user has not specified his/her
+                  concentration for the given school.
         """
         educations = []
 
@@ -40,7 +44,7 @@ class User(entity.Entity):
             type          = education.get('type')
             
             if 'concentration' in education:
-                concentration = Page(**education.get('concentration'))
+                concentration = map(lambda c: Page(**c), education.get('concentration'))
             else:
                 concentration = False
 

@@ -58,10 +58,12 @@ def test_get(mock):
                     'id': '136328419721520',
                     'name': '2009'
                 },
-                'concentration': {
-                    'id': '109803049037749',
-                    'name': 'Graphic Design'
-                },
+                'concentration': [
+                    {
+                        'id': '109803049037749',
+                        'name': 'Graphic Design'
+                    }
+                ],
                 'type': 'College',
             }
         ]
@@ -83,7 +85,8 @@ def test_get(mock):
     assert_equal('<bio>', user.bio)
     assert_equal(datetime(1988, 9, 15, 0, 0), user.birthday)
     assert_equal('Norwegian', user.languages[0].name)
-    assert_equal('Vinstra vidaregåande skule', user.education[0].school.name)
+    assert_equal('Westerdals School of Communication', user.education[1].school.name)
+    assert_equal('Graphic Design', user.education[1].concentration[0].name)
 
     # Verify that a valid attribute that is missing raises a PermissionDenied errorA
     try:

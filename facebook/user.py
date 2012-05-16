@@ -25,6 +25,13 @@ class User(entity.Entity):
 
     @property
     def education(self):
+        """
+        Return a list of structures describing the user's education history.
+
+        Each structure has attributes ``school``, ``year`` and optionally ``concentration``,
+        which reference ``Page`` instances. There may also be an attribute ``type`` which is simply
+        a string that describes the education level.
+        """
         educations = []
 
         for education in self.cache['education']:
@@ -50,5 +57,16 @@ class User(entity.Entity):
 
     @property
     def permissions(self):
+        """
+        Return a list of strings describing permissions.
+
+        See Facebook's exhaustive `Permissions Reference <http://developers.facebook.com/docs/authentication/permissions/>`_
+        for a list of available permissions.
+        """
         response = self.graph.get('%s/permissions' % self.id)
-        return map(lambda x: x[0], response['data'][0].items()) 
+
+        permissions = []
+        for permission, state in response['data'][0].items():
+            permissions.append(permission)
+        
+        return permissions

@@ -1,5 +1,7 @@
 from facepy import GraphAPI
 
+from .descriptors import Integer, String, List, Date, Boolean, Entity
+
 class Entity(object):
     """Entities are the base class for anything on Facebook."""
 
@@ -8,6 +10,8 @@ class Entity(object):
 
     _cache = None
     """Graph API cache for this object."""
+
+    facebook_id = Integer('id')
 
     def __init__(self, id, oauth_token=None, **attributes):
         """
@@ -32,3 +36,6 @@ class Entity(object):
     @property
     def graph(self):
         return GraphAPI(self.oauth_token)
+
+    def __repr__(self):
+        return '<%s #%s>' % (self.__class__.__name__, self.facebook_id)

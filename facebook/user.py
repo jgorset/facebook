@@ -7,7 +7,6 @@ from .structure import Structure
 class User(entity.Entity):
     """User instances represent Facebook users."""
 
-    facebook_id = Integer('id')
     username    = String('username')
     first_name  = String('first_name')
     last_name   = String('last_name')

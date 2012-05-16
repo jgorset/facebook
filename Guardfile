@@ -5,4 +5,8 @@ guard :test do
   watch /^facebook\/(.+)\.py$/ do |m|
     `nosetests --with-color tests/test_#{m[1]}.py`
   end
+
+  watch /^tests\/(.+)\.py$/ do |m|
+    `nosetests --with-color tests/#{m[1]}.py`
+  end
 end

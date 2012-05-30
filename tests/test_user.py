@@ -66,7 +66,11 @@ def test_get(mock):
                 ],
                 'type': 'College',
             }
-        ]
+        ],
+        'hometown': {
+            'id': '110848678937314',
+            'name': 'Oslo, Norway'
+        }
     }
 
     user = User('johannes.gorset')
@@ -88,13 +92,16 @@ def test_get(mock):
     assert_equal('Westerdals School of Communication', user.education[1].school.name)
     assert_equal('Graphic Design', user.education[1].concentration[0].name)
 
-    # Verify that a valid attribute that is missing raises a PermissionDenied errorA
+    # Verify that a valid attribute that is missing raises a PermissionDenied error
     try:
         assert_equal('jgorset@gmail.com', user.email)
     except PermissionDenied:
         pass
     else:
         assert false, "Accessing 'user.email' should raise PermissionDenied, but didn't"
+
+    assert_equal('110848678937314', user.hometown.id)
+    assert_equal('Oslo, Norway', user.hometown.name)
 
 @patch.object(GraphAPI, 'get')
 def test_permissions(mock):

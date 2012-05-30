@@ -21,6 +21,7 @@ class User(entity.Entity):
     bio         = String('bio')
     birthday    = Date('birthday', '%m/%d/%Y')
     email       = String('email')
+    hometown    = Entity('hometown', Page)
 
     @property
     def education(self):

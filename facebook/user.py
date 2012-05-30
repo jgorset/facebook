@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import entity
 
 from .descriptors import Integer, String, Date, Boolean, Entity
@@ -77,6 +79,39 @@ class User(entity.Entity):
 
     website = String('website')
     """The URL of the user's personal website."""
+
+    @property
+    def work(self):
+        """
+        A list of structures describing the user's work history.
+
+        Each structure has attributes ``employer``, ``position``, ``started_at`` and ``ended_at``.
+
+        ``employer`` and ``position`` reference ``Page`` instances, while ``started_at`` and ``ended_at``
+        are datetime objects.
+        """
+        works = []
+
+        for work in self.cache['work']:
+            employer = Page(**work.get('employer'))
+            position = Page(**work.get('position'))
+            start_at = datetime.strptime(work.get('start_date'), '%Y-%m')
+
+            if 'end_date' in work:
+                end_at = datetime.strptime(work.get('end_date'), '%Y-%m')
+            else:
+                end_at = None
+
+            work = Structure(
+                employer = employer,
+                position = position,
+                started_at = start_at,
+                ended_at = end_at
+            )
+
+            works.append(work)
+
+        return works
 
     @property
     def languages(self):

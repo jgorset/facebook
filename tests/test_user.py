@@ -83,7 +83,20 @@ def test_get(mock):
         'email': 'jgorset@gmail.com',
         'relationship_status': 'Single',
         'religion': 'Atheist',
-        'website': 'http://forrykt.com'
+        'website': 'http://forrykt.com',
+        'work': [
+            {
+                'employer': {
+                    'id': '93129637854',
+                    'name': 'Hyper'
+                },
+                'position': {
+                    'id': '137221592980321',
+                    'name': 'Developer'
+                },
+                'start_date': '2010-01'
+            }
+        ]
     }
 
     user = User('johannes.gorset')
@@ -118,6 +131,10 @@ def test_get(mock):
     assert_equal('Atheist', user.religion)
     assert_equal(None, user.significant_other)
     assert_equal('http://forrykt.com', user.website)
+    assert_equal('Hyper', user.work[0].employer.name)
+    assert_equal('Developer', user.work[0].position.name)
+    assert_equal(datetime(2010, 1, 1, 0, 0), user.work[0].started_at)
+    assert_equal(None, user.work[0].ended_at)
 
 @patch.object(GraphAPI, 'get')
 def test_permissions(mock):

@@ -83,11 +83,6 @@ class Entity(Descriptor):
         self.cls = cls
 
     def __get__(self, instance, owner):
-        data = super(Page, self).__get__(instance, owner)
+        data = super(Entity, self).__get__(instance, owner)
 
-        instance = self.cls(
-            id = data['id'],
-            oauth_token = instance.oauth_token
-        )
-
-        return instance
+        return self.cls(oauth_token = instance.oauth_token, **data)

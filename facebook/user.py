@@ -7,58 +7,58 @@ from .structure import Structure
 class User(entity.Entity):
     """User instances represent Facebook users."""
 
-    username        = String('username')
+    username = String('username')
     """The user's Facebook username."""
 
-    first_name      = String('first_name')
+    first_name = String('first_name')
     """The user's first name."""
 
-    middle_name     = String('middle_name')
+    middle_name = String('middle_name')
     """The user's middle name."""
 
-    last_name       = String('last_name')
+    last_name = String('last_name')
     """The user's last name."""
 
-    name            = String('name')
+    name = String('name')
     """The user's full name."""
 
-    locale          = String('locale')
+    locale = String('locale')
     """The user's locale."""
 
-    gender          = String('gender')
+    gender = String('gender')
     """The user's gender."""
 
-    link            = String('link')
+    link = String('link')
     """The URL of the profile for the user on Facebook."""
 
-    timezone        = Integer('timezone')
+    timezone = Integer('timezone')
     """The user's timezone offset from UTC."""
 
-    updated_at      = Date('updated_time', '%Y-%m-%dT%H:%M:%S+0000')
+    updated_at = Date('updated_time', '%Y-%m-%dT%H:%M:%S+0000')
     """The last time the user's profile was updated."""
 
-    is_verified     = Boolean('verified')
+    is_verified = Boolean('verified')
     """The user's account verification status."""
 
-    bio             = String('bio')
+    bio = String('bio')
     """The user's biography."""
 
-    birthday        = Date('birthday', '%m/%d/%Y')
+    birthday = Date('birthday', '%m/%d/%Y')
     """The user's birthday."""
 
-    email           = String('email')
+    email = String('email')
     """The proxied or contact email address granted by the user."""
 
-    hometown        = Entity('hometown', Page)
+    hometown = Entity('hometown', Page)
     """The user's hometown."""
 
-    location        = Entity('location', Page)
+    location = Entity('location', Page)
     """The user's current city."""
 
     political_view = String('political')
     """The user's political view."""
 
-    quotes          = String('quotes')
+    quotes = String('quotes')
     """The user's favorite quotes."""
 
     @property

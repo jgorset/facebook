@@ -7,26 +7,38 @@ from .structure import Structure
 class User(entity.Entity):
     """User instances represent Facebook users."""
 
-    username    = String('username')
-    first_name  = String('first_name')
-    last_name   = String('last_name')
-    name        = String('name')
-    locale      = String('locale')
-    gender      = String('gender')
-    link        = String('link')
-    languages   = List('languages', Page)
-    timezone    = Integer('timezone')
-    updated_at  = Date('updated_time', '%Y-%m-%dT%H:%M:%S+0000')
-    is_verified = Boolean('verified')
-    bio         = String('bio')
-    birthday    = Date('birthday', '%m/%d/%Y')
-    email       = String('email')
-    hometown    = Entity('hometown', Page)
+    username      = String('username')
+    first_name    = String('first_name')
+    last_name     = String('last_name')
+    name          = String('name')
+    locale        = String('locale')
+    gender        = String('gender')
+    link          = String('link')
+    languages     = List('languages', Page)
+    timezone      = Integer('timezone')
+    updated_at    = Date('updated_time', '%Y-%m-%dT%H:%M:%S+0000')
+    is_verified   = Boolean('verified')
+    bio           = String('bio')
+    birthday      = Date('birthday', '%m/%d/%Y')
+    email         = String('email')
+    hometown      = Entity('hometown', Page)
+
+    @property
+    def interested_in(self):
+        """
+        A list of strings describing the genders the user is interested in.
+        """
+        genders = []
+
+        for gender in self.cache['interested_in']:
+            genders.append(gender)
+
+        return genders
 
     @property
     def education(self):
         """
-        Return a list of structures describing the user's education history.
+        A list of structures describing the user's education history.
 
         Each structure has attributes ``school``, ``year``, ``concentration`` and ``type``.
 

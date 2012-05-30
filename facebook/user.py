@@ -61,6 +61,14 @@ class User(entity.Entity):
     quotes = String('quotes')
     """The user's favorite quotes."""
 
+    relationship_status = String('relationship_status')
+    """
+    The user's relationship status:
+
+    Single, In a relationship, Engaged, Married, It's complicated, In an open relationship,
+    Widowed, Separated, Divorced, In a civil union, In a domestic partnership
+    """
+
     @property
     def languages(self):
         """

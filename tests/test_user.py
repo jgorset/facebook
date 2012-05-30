@@ -80,7 +80,8 @@ def test_get(mock):
         },
         'quotes': '<quotes>',
         'political': 'Moderate',
-        'email': 'jgorset@gmail.com'
+        'email': 'jgorset@gmail.com',
+        'relationship_status': 'Single'
     }
 
     user = User('johannes.gorset')
@@ -111,6 +112,7 @@ def test_get(mock):
     assert_equal('Oslo, Norway', user.location.name)
     assert_equal('Moderate', user.political_view)
     assert_equal('<quotes>', user.quotes)
+    assert_equal('Single', user.relationship_status)
 
 @patch.object(GraphAPI, 'get')
 def test_permissions(mock):

@@ -72,6 +72,9 @@ class User(entity.Entity):
     religion = String('religion')
     """The user's religion."""
 
+    significant_other = Entity('significant_other', Page)
+    """The user's significant other."""
+
     @property
     def languages(self):
         """

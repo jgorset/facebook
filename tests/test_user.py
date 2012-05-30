@@ -115,6 +115,7 @@ def test_get(mock):
     assert_equal('<quotes>', user.quotes)
     assert_equal('Single', user.relationship_status)
     assert_equal('Atheist', user.religion)
+    assert_equal(None, user.significant_other)
 
 @patch.object(GraphAPI, 'get')
 def test_permissions(mock):

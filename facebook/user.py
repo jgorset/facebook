@@ -13,6 +13,9 @@ class User(entity.Entity):
     first_name      = String('first_name')
     """The user's first name."""
 
+    middle_name     = String('middle_name')
+    """The user's middle name."""
+
     last_name       = String('last_name')
     """The user's last name."""
 

@@ -52,7 +52,7 @@ class User(entity.Entity):
     location        = Entity('location', Page)
     """The user's current city."""
 
-    political_views = String('political')
+    political_view = String('political')
     """The user's political view."""
 
     quotes          = String('quotes')

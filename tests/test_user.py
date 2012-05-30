@@ -78,7 +78,8 @@ def test_get(mock):
             'id': '110848678937314',
             'name': 'Oslo, Norway'
         },
-        'quotes': '<quotes>'
+        'quotes': '<quotes>',
+        'political': 'Moderate'
     }
 
     user = User('johannes.gorset')
@@ -114,6 +115,7 @@ def test_get(mock):
     assert_equal('female', user.interested_in[0])
     assert_equal('110848678937314', user.location.id)
     assert_equal('Oslo, Norway', user.location.name)
+    assert_equal('Moderate', user.political_view)
     assert_equal('<quotes>', user.quotes)
 
 @patch.object(GraphAPI, 'get')

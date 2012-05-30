@@ -4,5 +4,3 @@ from .session import Session, session
 from .entity import Entity
 from .user import User
 from .page import Page
-
-from .exceptions import PermissionDenied

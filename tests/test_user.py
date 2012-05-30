@@ -91,6 +91,7 @@ def test_get(mock):
     assert_equal(True, user.is_verified)
     assert_equal('<bio>', user.bio)
     assert_equal(datetime(1988, 9, 15, 0, 0), user.birthday)
+    assert_equal('107381149291932', user.languages[0].id)
     assert_equal('Norwegian', user.languages[0].name)
     assert_equal('Westerdals School of Communication', user.education[1].school.name)
     assert_equal('Graphic Design', user.education[1].concentration[0].name)

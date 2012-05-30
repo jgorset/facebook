@@ -48,28 +48,6 @@ class Date(Descriptor):
     def __get__(self, instance, owner):
         return datetime.strptime(super(Date, self).__get__(instance, owner), self.format)
 
-class List(Descriptor):
-
-    def __init__(self, attribute, cls):
-        """
-        Create a new descriptor.
-
-        :param attribute: A string describing the name of the attribute in Facebook's Graph API.
-        :param cls: A type describing the class that the list will consist of.
-        """
-        self.attribute = attribute
-        self.cls = cls
-
-    def __get__(self, instance, owner):
-        items = []
-
-        for item in super(List, self).__get__(instance, owner):
-            instance = self.cls(oauth_token=instance.oauth_token, **item)
-
-            items.append(instance)
-
-        return items
-
 class Entity(Descriptor):
 
     def __init__(self, attribute, cls):

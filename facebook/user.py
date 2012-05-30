@@ -14,7 +14,6 @@ class User(entity.Entity):
     locale        = String('locale')
     gender        = String('gender')
     link          = String('link')
-    languages     = List('languages', Page)
     timezone      = Integer('timezone')
     updated_at    = Date('updated_time', '%Y-%m-%dT%H:%M:%S+0000')
     is_verified   = Boolean('verified')
@@ -22,6 +21,23 @@ class User(entity.Entity):
     birthday      = Date('birthday', '%m/%d/%Y')
     email         = String('email')
     hometown      = Entity('hometown', Page)
+
+    @property
+    def languages(self):
+        """
+        A list of strings describing the user's languages.
+        """
+        languages = []
+
+        for language in self.cache['languages']:
+            language = Structure(
+                id = language['id'],
+                name = language['name']
+            )
+
+            languages.append(language)
+
+        return languages
 
     @property
     def interested_in(self):

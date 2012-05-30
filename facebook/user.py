@@ -1,6 +1,6 @@
 import entity
 
-from .descriptors import Integer, String, List, Date, Boolean, Entity
+from .descriptors import Integer, String, Date, Boolean, Entity
 from .page import Page
 from .structure import Structure
 
@@ -21,6 +21,7 @@ class User(entity.Entity):
     birthday      = Date('birthday', '%m/%d/%Y')
     email         = String('email')
     hometown      = Entity('hometown', Page)
+    location      = Entity('location', Page)
 
     @property
     def languages(self):

@@ -1,6 +1,6 @@
 from facepy import GraphAPI
 
-from .descriptors import Integer, String, List, Date, Boolean, Entity
+from .descriptors import Integer, String, Date, Boolean, Entity
 
 class Entity(object):
     """Entities are the base class for anything on Facebook."""

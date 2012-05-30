@@ -1,7 +1,5 @@
 from datetime import datetime
 
-from .exceptions import PermissionDenied
-
 class Descriptor(object):
 
     def __init__(self, attribute):
@@ -13,25 +11,37 @@ class Descriptor(object):
         self.attribute = attribute
 
     def __get__(self, instance, owner):
-        try:
-            return instance.cache[self.attribute]
-        except:
-            raise PermissionDenied('You do not have permission to load %s for this entity' % self.attribute)
+        return instance.cache.get(self.attribute)
 
 class String(Descriptor):
 
     def __get__(self, instance, owner):
-        return str(super(String, self).__get__(instance, owner))
+        data = super(String, self).__get__(instance, owner)
+
+        if data:
+            return str(data)
+        else:
+            return data
 
 class Integer(Descriptor):
 
     def __get__(self, instance, owner):
-        return int(super(Integer, self).__get__(instance, owner))
+        data = super(Integer, self).__get__(instance, owner)
+
+        if data:
+            return int(data)
+        else:
+            return data
 
 class Boolean(Descriptor):
 
     def __get__(self, instance, owner):
-        return bool(super(Boolean, self).__get__(instance, owner))
+        data = super(Boolean, self).__get__(instance, owner)
+
+        if data:
+            return bool(data)
+        else:
+            return data
 
 class Date(Descriptor):
 
@@ -46,7 +56,12 @@ class Date(Descriptor):
         self.format = format
 
     def __get__(self, instance, owner):
-        return datetime.strptime(super(Date, self).__get__(instance, owner), self.format)
+        data = super(Date, self).__get__(instance, owner)
+
+        if data:
+            return datetime.strptime(data, self.format)
+        else:
+            return data
 
 class Entity(Descriptor):
 
@@ -63,4 +78,7 @@ class Entity(Descriptor):
     def __get__(self, instance, owner):
         data = super(Entity, self).__get__(instance, owner)
 
-        return self.cls(oauth_token = instance.oauth_token, **data)
+        if data:
+            return self.cls(oauth_token = instance.oauth_token, **data)
+        else:
+            return None

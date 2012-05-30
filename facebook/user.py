@@ -7,21 +7,23 @@ from .structure import Structure
 class User(entity.Entity):
     """User instances represent Facebook users."""
 
-    username      = String('username')
-    first_name    = String('first_name')
-    last_name     = String('last_name')
-    name          = String('name')
-    locale        = String('locale')
-    gender        = String('gender')
-    link          = String('link')
-    timezone      = Integer('timezone')
-    updated_at    = Date('updated_time', '%Y-%m-%dT%H:%M:%S+0000')
-    is_verified   = Boolean('verified')
-    bio           = String('bio')
-    birthday      = Date('birthday', '%m/%d/%Y')
-    email         = String('email')
-    hometown      = Entity('hometown', Page)
-    location      = Entity('location', Page)
+    username        = String('username')
+    first_name      = String('first_name')
+    last_name       = String('last_name')
+    name            = String('name')
+    locale          = String('locale')
+    gender          = String('gender')
+    link            = String('link')
+    timezone        = Integer('timezone')
+    updated_at      = Date('updated_time', '%Y-%m-%dT%H:%M:%S+0000')
+    is_verified     = Boolean('verified')
+    bio             = String('bio')
+    birthday        = Date('birthday', '%m/%d/%Y')
+    email           = String('email')
+    hometown        = Entity('hometown', Page)
+    location        = Entity('location', Page)
+    political_views = String('political')
+    quotes          = String('quotes')
 
     @property
     def languages(self):

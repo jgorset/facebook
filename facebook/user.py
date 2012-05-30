@@ -69,6 +69,9 @@ class User(entity.Entity):
     Widowed, Separated, Divorced, In a civil union, In a domestic partnership
     """
 
+    religion = String('religion')
+    """The user's religion."""
+
     @property
     def languages(self):
         """

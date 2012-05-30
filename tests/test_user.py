@@ -82,7 +82,8 @@ def test_get(mock):
         'political': 'Moderate',
         'email': 'jgorset@gmail.com',
         'relationship_status': 'Single',
-        'religion': 'Atheist'
+        'religion': 'Atheist',
+        'website': 'http://forrykt.com'
     }
 
     user = User('johannes.gorset')
@@ -116,6 +117,7 @@ def test_get(mock):
     assert_equal('Single', user.relationship_status)
     assert_equal('Atheist', user.religion)
     assert_equal(None, user.significant_other)
+    assert_equal('http://forrykt.com', user.website)
 
 @patch.object(GraphAPI, 'get')
 def test_permissions(mock):

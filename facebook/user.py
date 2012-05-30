@@ -75,6 +75,9 @@ class User(entity.Entity):
     significant_other = Entity('significant_other', Page)
     """The user's significant other."""
 
+    website = String('website')
+    """The URL of the user's personal website."""
+
     @property
     def languages(self):
         """

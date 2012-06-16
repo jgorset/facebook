@@ -153,6 +153,6 @@ def test_permissions(mock):
         permissions = user.permissions
 
         mock.assert_called_with('johannes.gorset/permissions')
-        
+
         assert_in('user_location', permissions)
         assert_in('user_relationships', permissions)

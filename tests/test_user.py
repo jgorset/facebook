@@ -156,3 +156,37 @@ def test_permissions(mock):
 
         assert_in('user_location', permissions)
         assert_in('user_relationships', permissions)
+
+@patch.object(GraphAPI, 'get')
+def test_accounts(mock):
+    mock.return_value = {
+        'data': [
+            {
+                'name': 'Foo Inc.',
+                'access_token': '...',
+                'category': 'Local business',
+                'id': '1',
+                'perms': [
+                    'ADMINISTER',
+                    'EDIT_PROFILE',
+                    'CREATE_CONTENT',
+                    'MODERATE_CONTENT',
+                    'CREATE_ADS',
+                    'BASIC_ADMIN'
+                ]
+            }
+        ]
+    }
+
+    with facebook.session('<token>') as session:
+        user = session.User('johannes.gorset')
+
+        accounts = user.accounts
+
+        mock.assert_called_with('johannes.gorset/accounts')
+
+        assert_equal('1', accounts[0].page.id)
+        assert_equal('Foo Inc.', accounts[0].page.name)
+        assert_equal('Local business', accounts[0].page.category)
+        assert_equal('...', accounts[0].access_token)
+        assert_equal(6, len(accounts[0].permissions))

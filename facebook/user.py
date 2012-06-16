@@ -5,6 +5,7 @@ import entity
 from .descriptors import Integer, String, Date, Boolean, Entity
 from .page import Page
 from .structure import Structure
+from .employment import Employment
 
 class User(entity.Entity):
     """User instances represent Facebook users."""
@@ -83,35 +84,26 @@ class User(entity.Entity):
     @property
     def work(self):
         """
-        A list of structures describing the user's work history.
+        A list of :class:`Employment` instances describing the user's work history.
 
         Each structure has attributes ``employer``, ``position``, ``started_at`` and ``ended_at``.
 
         ``employer`` and ``position`` reference ``Page`` instances, while ``started_at`` and ``ended_at``
         are datetime objects.
         """
-        works = []
+        employments = []
 
         for work in self.cache['work']:
-            employer = Page(**work.get('employer'))
-            position = Page(**work.get('position'))
-            start_at = datetime.strptime(work.get('start_date'), '%Y-%m')
-
-            if 'end_date' in work:
-                end_at = datetime.strptime(work.get('end_date'), '%Y-%m')
-            else:
-                end_at = None
-
-            work = Structure(
-                employer = employer,
-                position = position,
-                started_at = start_at,
-                ended_at = end_at
+            employment = Employment(
+                employer = work.get('employer'),
+                position = work.get('position'),
+                started_at = work.get('start_date'),
+                ended_at = work.get('end_date')
             )
 
-            works.append(work)
+            employments.append(employment)
 
-        return works
+        return employments
 
     @property
     def languages(self):

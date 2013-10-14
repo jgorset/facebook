@@ -23,7 +23,7 @@ Usage
     user.link           # => 'http://facebook.com/johannesgorset'
 
     # Query Facebook on behalf of a user
-    user = session.User('johannes.gorset', oauth_token = oauth_token)
+    user = facebook.User('johannes.gorset', oauth_token = oauth_token)
 
     user.permissions        # => ['user_location', 'user_relationships']
     user.friends            # => [<User #586052345>, <User #556022345>, <User #586252349>, ...]

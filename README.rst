@@ -33,7 +33,7 @@ Usage
 Disclaimer
 ----------
 
-I'm not nearly done yet.
+I'm not nearly done yet, and I probably never will be.
 
 Installation
 ------------

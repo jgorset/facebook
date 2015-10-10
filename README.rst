@@ -33,7 +33,8 @@ Usage
 Disclaimer
 ----------
 
-I'm not nearly done yet, and I probably never will be.
+I'm not nearly done yet, and I probably never will be. Check out
+`facepy <https://github.com/jgorset/facepy>`_, though!
 
 Installation
 ------------
